@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ recipe.name }} - Recipe Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .recipe-image {
+            display: block;
+            max-width: 400px;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .instructions {
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ recipe.name }}</h1>
+        <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+        <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
+        <p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+        <div class="instructions">
+            <p><strong>Instructions:</strong></p>
+            <ul>
+                {% for instruction in instructions %}
+                    <li>{{ instruction }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% if recipe.pic %}
+            <img src="{{ recipe.pic.url }}" alt="{{ recipe.name }}" class="recipe-image" />
+        {% endif %}
+        <a href="{% url 'recipe_list' %}" class="btn">Back to Recipes</a>
+    </div>
+</body>
+</html>
