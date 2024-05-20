@@ -18,10 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import login_view, logout_view, logout_success
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('recipes.urls')),  # This includes all URLs from the recipes app
+    path('login/', login_view, name='login'),  # This is the login page
+    path('recipes/', include('recipes.urls', namespace='recipes')),
+    path('logout/', logout_view, name='logout'),  # This is the logout page
+    path('logout/success/', logout_success, name='logout_success'),
 ]
 
 if settings.DEBUG:

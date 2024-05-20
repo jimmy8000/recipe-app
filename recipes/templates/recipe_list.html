@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Recipe List</title>
     <style>
@@ -16,6 +16,7 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            position: relative;
         }
         h1 {
             text-align: center;
@@ -66,11 +67,28 @@
         .btn:hover {
             background-color: #0056b3;
         }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .logout-btn:hover {
+            background-color: #6c0a14;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Recipes</h1>
+        <a href="{% url 'logout' %}" class="logout-btn">Log Out</a>
         <ul class="recipe-list">
             {% for recipe in recipes %}
                 <li class="recipe-item">
@@ -81,7 +99,7 @@
                     {% if recipe.pic %}
                         <img src="{{ recipe.pic.url }}" alt="{{ recipe.name }}" class="recipe-image" />
                     {% endif %}
-                    <a href="{% url 'recipe_detail' recipe.pk %}" class="btn">View Details</a>
+                    <a href="{% url 'recipes:recipe_detail' recipe.pk %}" class="btn">View Details</a>
                 </li>
             {% endfor %}
         </ul>
