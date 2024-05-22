@@ -1,108 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Recipe List</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            position: relative;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .recipe-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .recipe-item {
-            background-color: #fafafa;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .recipe-item h2 {
-            margin-top: 0;
-        }
-        .recipe-item p {
-            margin: 5px 0;
-        }
-        .recipe-image {
-            display: block;
-            max-width: 400px;
-            height: auto;
-            margin-top: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .recipe-image:hover {
-            filter: brightness(80%);
-            transition: filter 0.3s ease;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 10px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        .logout-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #dc3545;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-        .logout-btn:hover {
-            background-color: #6c0a14;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Recipes</h1>
-        <a href="{% url 'logout' %}" class="logout-btn">Log Out</a>
-        <ul class="recipe-list">
-            {% for recipe in recipes %}
-                <li class="recipe-item">
-                    <h2>{{ recipe.name }}</h2>
-                    <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
-                    <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
-                    <p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
-                    {% if recipe.pic %}
-                        <img src="{{ recipe.pic.url }}" alt="{{ recipe.name }}" class="recipe-image" />
-                    {% endif %}
-                    <a href="{% url 'recipes:recipe_detail' recipe.pk %}" class="btn">View Details</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Recipe List{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Recipes</h1>
+    <ul class="recipe-list">
+        {% for recipe in recipes %}
+            <li class="recipe-item">
+                <h2>{{ recipe.name }}</h2>
+                <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
+                <p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+                {% if recipe.pic %}
+                    <img src="{{ recipe.pic.url }}" alt="{{ recipe.name }}" class="recipe-image" />
+                {% endif %}
+                <a href="{% url 'recipes:recipe_detail' recipe.pk %}" class="btn">View Details</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if chart %}
+        <h2>Chart</h2>
+        <img src="data:image/png;base64,{{ chart }}" alt="Chart" class="img-fluid">
+    {% endif %}
+</div>
+
+<style>
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+        margin-top: 50px;
+    }
+    .recipe-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    .recipe-item {
+        background-color: #fafafa;
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .recipe-item h2 {
+        margin-top: 0;
+    }
+    .recipe-item p {
+        margin: 5px 0;
+    }
+    .recipe-image {
+        display: block;
+        max-width: 400px;
+        height: auto;
+        margin-top: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .recipe-image:hover {
+        filter: brightness(80%);
+        transition: filter 0.3s ease;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 10px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+        color: #fff;
+    }
+</style>
+{% endblock %}
