@@ -1,7 +1,6 @@
-# Text backups
-*.bak
-
-# Database
-*.sqlite3
 
 .env
+venv/
+*.pyc
+__pycache__/
+db.sqlite3
