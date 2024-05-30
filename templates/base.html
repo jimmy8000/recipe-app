@@ -11,6 +11,35 @@
             background-color: #f4f4f4;
             padding-top: 70px; 
         }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        .navbar-nav .nav-item .nav-link {
+            font-size: 1.1em;
+        }
+        .container {
+            margin-top: 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-inline .form-group {
+            margin-bottom: 0;
+        }
+        .btn-outline-success {
+            margin-left: 10px;
+        }
+        .btn-logout {
+            background-color: rgb(255, 0, 0);
+            color: rgb(255, 255, 255) !important;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-logout:hover {
+            background-color: darkred;
+        }
     </style>
     {% block extra_head %}
     {% endblock %}
@@ -23,8 +52,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'recipes:recipe_list' %}">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'recipes:recipe_list' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'recipes:statistics' %}">Statistics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'recipes:add_recipe' %}">Add Recipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'recipes:about_me' %}">About Me</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'recipes:recipe_list' %}">
@@ -32,19 +70,11 @@
                     <label for="id_query" class="mr-2">Recipe Name:</label>
                     <input type="text" name="query" id="id_query" class="form-control" value="{{ request.GET.query }}">
                 </div>
-                <div class="form-group mr-2">
-                    <label for="id_chart_type" class="mr-2">Chart Type:</label>
-                    <select name="chart_type" id="id_chart_type" class="form-control">
-                        {% for value, label in form.chart_type.field.choices %}
-                            <option value="{{ value }}" {% if request.GET.chart_type == value %}selected{% endif %}>{{ label }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-link btn-logout" href="{% url 'logout' %}">Logout</a>
                 </li>
             </ul>
         </div>

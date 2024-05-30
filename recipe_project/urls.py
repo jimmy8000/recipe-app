@@ -27,6 +27,7 @@ urlpatterns = [
     path('recipes/', include('recipes.urls', namespace='recipes')),
     path('logout/', logout_view, name='logout'),  # This is the logout page
     path('logout/success/', logout_success, name='logout_success'),
+    path('users/', include('users.urls')),
 ]
 
 if settings.DEBUG:

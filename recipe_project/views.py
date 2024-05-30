@@ -46,3 +46,4 @@ def logout_view(request):
 
 def logout_success(request):
    return render(request, 'auth/success.html')
+

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mt-5">Statistics</h2>
+<div class="form-group mr-2 mt-4">
+    <form method="get" class="form-inline">
+        <label for="id_chart_type" class="mr-2">Chart Type:</label>
+        <select name="chart_type" id="id_chart_type" class="form-control mr-2">
+            {% for value, label in form.chart_type.field.choices %}
+                <option value="{{ value }}" {% if request.GET.chart_type == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary">Generate Chart</button>
+    </form>
+</div>
+
+{% if chart %}
+    <div class="mt-5">
+        <h2>Chart</h2>
+        <img src="data:image/png;base64,{{ chart }}" alt="Chart" class="img-fluid mt-3">
+    </div>
+{% endif %}
+
+<style>
+    .mt-5 {
+        margin-top: 3rem !important;
+    }
+    .mt-4 {
+        margin-top: 1.5rem !important;
+    }
+    .mt-3 {
+        margin-top: 1rem !important;
+    }
+</style>
+{% endblock %}

@@ -1,4 +1,5 @@
 from django import forms
+from .models import Recipe
 
 class RecipeSearchForm(forms.Form):
     query = forms.CharField(required=False, label='Recipe Name')
@@ -8,3 +9,8 @@ class RecipeSearchForm(forms.Form):
         ('#3', 'Line Chart: Cooking Time of Recipes')
     ]
     chart_type = forms.ChoiceField(choices=CHART_CHOICES, required=False, label='Chart Type')
+    
+class RecipeForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = ['name', 'cooking_time', 'instructions', 'ingredients', 'pic']
