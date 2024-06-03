@@ -83,9 +83,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'recipeApp',
         'CLIENT': {
-            'host': config('DATABASE_URL'),
-            'tls': True,
-            'tlsAllowInvalidCertificates': True  # Bypass SSL certificate validation
+            'host': config('DATABASE_URL')
         }
     }
 }
