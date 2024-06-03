@@ -86,7 +86,9 @@ DATABASES = {
         'NAME': '<dbname>',
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': 'mongodb+srv://user_zero: WqY#P!e2b7YDY##@recipeapp.jofheql.mongodb.net/?retryWrites=true&w=majority&appName=recipeApp'
+            'host': 'mongodb+srv://user_zero: WqY#P!e2b7YDY##@recipeapp.jofheql.mongodb.net/?retryWrites=true&w=majority&appName=recipeApp',
+            'ssl': True,
+            'ssl_cert_reqs': 'CERT_NONE'
         }
     }
 }
