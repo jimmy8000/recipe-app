@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'recipe_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': '<dbname>',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': 'mongodb+srv://user_zero: WqY#P!e2b7YDY##@recipeapp.jofheql.mongodb.net/?retryWrites=true&w=majority&appName=recipeApp'
+        }
     }
 }
 
