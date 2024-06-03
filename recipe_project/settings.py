@@ -82,11 +82,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'recipeApp',
-        'ENFORCE_SCHEMA': False,
         'CLIENT': {
             'host': config('DATABASE_URL'),
-            'tls': True,
-            'tlsAllowInvalidCertificates': True
+            'ssl': True,
+            'ssl_cert_reqs': None  # Ensure SSL connection with no cert checks
         }
     }
 }
