@@ -82,6 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'recipeApp',
+        'ENFORCE_SCHEMA': False,
         'CLIENT': {
             'host': config('DATABASE_URL'),
             'tls': True,
