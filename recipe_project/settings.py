@@ -10,7 +10,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-default-secret-key')
 
 DEBUG = os.environ.get('DJANGO_DEBUG', True)
 
-ALLOWED_HOSTS = ["recipe-app-foundry.herokuapp.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["recipe-app-foundry-09ed5908c1e3.herokuapp.com", "localhost", "127.0.0.1"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
