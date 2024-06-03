@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,12 +84,10 @@ WSGI_APPLICATION = 'recipe_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': '<dbname>',
+        'NAME': 'recipeApp',
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': 'mongodb+srv://user_zero: WqY#P!e2b7YDY##@recipeapp.jofheql.mongodb.net/?retryWrites=true&w=majority&appName=recipeApp',
-            'ssl': True,
-            'ssl_cert_reqs': 'CERT_NONE'
+            'host': config('DATABASE_URL')
         }
     }
 }
@@ -147,7 +146,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #AUTH
 LOGIN_URL='/login/'
 
-# Heroku: Update database configuration from $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
