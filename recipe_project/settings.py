@@ -84,8 +84,8 @@ DATABASES = {
         'NAME': 'recipeApp',
         'CLIENT': {
             'host': config('DATABASE_URL'),
-            'ssl': True,
-            'ssl_cert_reqs': None  # Ensure SSL connection with no cert checks
+            'tls': True,
+            'tlsAllowInvalidCertificates': True  # Bypass SSL certificate validation
         }
     }
 }
